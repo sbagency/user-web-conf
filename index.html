@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title>fingerprint</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+ <body>
+ </body>
+ <script src="code.js"></script>
+ <script>
+   (async function(){
+   var h = new UserConf({a:1})
+   var s = await h.getConf()
+   
+   var longs = s.join("-----")
+   console.log(longs)
+   
+   var x=await digest(longs)
+   
+   const hArray = Array.from(new Uint8Array(x))
+   const hexStr = hArray.map(b => b.toString(16).padStart(2, '0')).join('')
+   console.log(hexStr)
+   const b64 =  base64encode(hArray)
+   console.log(b64)
+   }())
+ </script>
+</html>
